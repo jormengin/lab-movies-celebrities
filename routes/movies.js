@@ -5,7 +5,7 @@ const router = require("express").Router();
 //GET NEW MOVIE VIEW    
 router.get("/create", async (req, res, next) => {
   try {
-    movies = await Movie.find().populate('Celebrity');
+    movies = await Movie.find().populate('cast');
     res.render('movies/new-movie', { movies });
   } catch (err) {
     next(err);
@@ -14,9 +14,10 @@ router.get("/create", async (req, res, next) => {
 
 //POST NEW MOVIE
 router.post("/create", async function(req,res,next){
+  const { title, genre, plot, cast } = req.body;
   try {
-    const celebrities = await Celebrity.find({});
-    res.render("movies/new-movie", { celebrities });
+    await Movie.create({ title, genre, plot, cast });
+    res.redirect("/movies");
   } catch (error) {
     next(error);
   }
