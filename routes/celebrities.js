@@ -10,7 +10,7 @@ router.post("/create", async function(req,res,next){
     const {name,occupation,catchPhrase} = req.body;
     try{
         const newCelebrity = await Celebrity.create({name,occupation,catchPhrase});
-        res.redirect(`/celebrities/${newCelebrity._id}`)
+        res.redirect(`/celebrities`)
     } catch(error){
         res.redirect("/celebrities")
     }
