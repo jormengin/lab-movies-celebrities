@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Celebrity = require("../models/Celebrity");
+
 //GET NEW CELEBRITY VIEW    
 router.get("/create", (req, res, next) => {
     res.render("celebrities/new-celebrity");
