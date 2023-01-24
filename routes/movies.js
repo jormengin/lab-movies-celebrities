@@ -5,8 +5,8 @@ const router = require("express").Router();
 //GET NEW MOVIE VIEW    
 router.get("/create", async (req, res, next) => {
   try {
-    movies = await Movie.find().populate('cast');
-    res.render('movies/new-movie', { movies });
+    const celebrities = await Celebrity.find({});
+    res.render('movies/new-movie', { celebrities });
   } catch (err) {
     next(err);
   }

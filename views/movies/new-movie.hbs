@@ -5,7 +5,8 @@
     <input type="text" name="genre" placeholder="Genre">
     <input type="text" name="plot" placeholder="Plot">
     <label for="cast">Select the cast:</label>
-    <select name="cast" multiple>
+    <select name="cast">
+        <option disabled selected>Choose an artist</option>
         {{#each celebrities}}
         <option value="{{_id}}">{{name}}</option>
         {{/each}}
