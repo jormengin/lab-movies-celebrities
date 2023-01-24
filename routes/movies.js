@@ -38,11 +38,24 @@ router.get("/:id", async   (req, res, next) => {
   const {id} = req.params;
   try{
       const moviedetail = await Movie.findById(id).populate("cast");
+      console.log(`movie detail:${moviedetail}`);
+      console.log(`cast id:${moviedetail.cast[0]._id}`);
       res.render("movies/movie-details", moviedetail );
   } catch(error){
       next(error)
   }
 });
 
+//delete POST ROUTE
+
+router.post("/delete/:id", async function(req,res,next){
+  const {id} = req.params;
+  try {
+    await Movie.findByIdAndDelete(id);
+    res.redirect("/movies");
+  } catch (error) {
+    next(error);
+  }
+})
 
 module.exports = router;
